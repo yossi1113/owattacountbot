@@ -1,8 +1,4 @@
 # owattacountbot
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/H2H41H5C76)
-[![supportserver](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/discord.svg)](https://discord.gg/9FdycyhkMn)
-[![joinbot](https://gist.github.com/cxmeel/0dbc95191f239b631c3874f4ccf114e2/raw/play.svg)](https://discord.com/oauth2/authorize?client_id=1491089714533372095&permissions=274877975552&integration_type=0&scope=bot)
-<hr>
 一部で脱AIを頑張りました。
 [実際にホストしてます。](https://discord.com/oauth2/authorize?client_id=1491089714533372095&permissions=274877975552&integration_type=0&scope=bot)
 <hr>
