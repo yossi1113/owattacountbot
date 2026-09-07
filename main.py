@@ -16,6 +16,7 @@ word = os.getenv('word')
 # MPL-2.0ライセンスによりメインコードを改変した場合は公開が必要です。
 # forkすると便利、、、かも？
 repo = os.getenv('repo')
+iikata = os.getenv('iikata')
 
 client = discord.Client(intents=intents)
 
@@ -129,21 +130,21 @@ async def on_message(message):
     if message.author.bot == True:
         return
 
-    if word in message.content:
+    if message.content in word:
       try:
         id = message.channel.id
       except:
         return
       if bl(id,"check") == True:
         noun = wordplus(message.author.id)
-        await message.reply(f"{word}って言ったのは{noun}回らしいよ\n-# [諸説あり]")
+        await message.reply(f"{iikata}って言ったのは{noun}回らしいよ\n-# [諸説あり]")
 
     if message.content.startswith(f"{prefix}check"):
         noun = wordcheck(message.author.id)
-        await message.reply(f"いままでに{noun}回{word}と言った事があるようですよ？\n-# [諸説あり]")
+        await message.reply(f"いままでに{noun}回{iikata}と言った事があるようですよ？\n-# [諸説あり]")
 
     if message.content.startswith(f"{prefix}help"):
-        await message.reply(f"{word} - カウントされます\n{prefix}check - あなたのカウントを見れるらしいね\n{prefix}bl - チャンネルのカウントを停止するでー\n{prefix}help - こ　れ\n{prefix}ping - pingこまんどらしい\n(カウント回数はグローバルです。)\n作者はAIの使用についてこう公表しています。\n使用された箇所：\n・コードの監査や一部エラーの修正\n・replitの自動補完\n・githubへのcommitとpush←New！\n使用されていない箇所：\n・大半のコードの作成\n・botのアイコンや名前\n・サーバーのホスティング\n\nこのbotはオープンソースです。\n{repo}")
+        await message.reply(f"{iikata} - カウントされます\n{prefix}check - あなたのカウントを見れるらしいね\n{prefix}bl - チャンネルのカウントを停止するでー\n{prefix}help - こ　れ\n{prefix}ping - pingこまんどらしい\n(カウント回数はグローバルです。)\n作者はAIの使用についてこう公表しています。\n使用された箇所：\n・コードの監査や一部エラーの修正\n・replitの自動補完\n・githubへのcommitとpush←New！\n使用されていない箇所：\n・大半のコードの作成\n・botのアイコンや名前\n・サーバーのホスティング\n\nこのbotはオープンソースです。\n{repo}")
 
     if message.content.startswith(f"{prefix}bl"):
       try:
@@ -151,9 +152,9 @@ async def on_message(message):
       except:
         return
       if bl(id,"plus") == True:
-          await message.reply(f"チャンネルの{word}カウントを停止したよ！")
+          await message.reply(f"チャンネルの{iikata}カウントを停止したよ！")
       else:
-          await message.reply(f"チャンネルの{word}カウントを再開したよ！")
+          await message.reply(f"チャンネルの{iikata}カウントを再開したよ！")
 
     if message.content.startswith(f"{prefix}ping"):
         # Ping値を秒単位で取得
