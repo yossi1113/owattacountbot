@@ -9,9 +9,20 @@
 <hr>
 <h3>ホスト方法</h3>
 <p>1. このリポジトリをクローンする</p>
+
+    git clone https://github.com/yossi1113/owattacountbot.git
+
 <p>2. envを追加して編集する</p>
-<p>3. main.pyの気に入らないとこを直すかissueを作る</p>
+<p>3. ライブラリをインストールする</p>
+
+    cd owattacountbot
+
+    pip install -r requirements.txt
+
 <p>4. コードを実行する</p>
+
+    python main.py
+
 <p>5. 完成！</p>
 <hr>
 <h3>.envのテンプレート</h3>

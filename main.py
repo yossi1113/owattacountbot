@@ -13,6 +13,9 @@ prefix = os.getenv('prefix')
 save = os.getenv('save')
 blsave = os.getenv('blsave')
 word = os.getenv('word')
+print(word)
+word = word.split(",")
+print(word)
 # MPL-2.0ライセンスによりメインコードを改変した場合は公開が必要です。
 # forkすると便利、、、かも？
 repo = os.getenv('repo')
@@ -130,26 +133,40 @@ async def on_message(message):
     if message.author.bot == True:
         return
 
-    if message.content in word:
+    if any(w in message.content for w in word):
       try:
         id = message.channel.id
-      except:
+      except Exception as e :
+        print(e)
         return
       if bl(id,"check") == True:
         noun = wordplus(message.author.id)
         await message.reply(f"{iikata}って言ったのは{noun}回らしいよ\n-# [諸説あり]")
 
     if message.content.startswith(f"{prefix}check"):
-        noun = wordcheck(message.author.id)
-        await message.reply(f"いままでに{noun}回{iikata}と言った事があるようですよ？\n-# [諸説あり]")
+        supiki = message.content.split()
+        if len(supiki) == 2:
+          try:
+            id = int(supiki[1])
+          except Exception as e:
+            print(e)
+            await message.reply("ユーザーIDを入力してください。")
+            return
+          noun = wordcheck(id)
+          await message.reply(f"その人は{noun}回{iikata}と言った事があるようですよ？\n-# [諸説あり]")
+          return
+        else:
+          noun = wordcheck(message.author.id)
+          await message.reply(f"いままでに{noun}回{iikata}と言った事があるようですよ？\n-# [諸説あり]")
 
     if message.content.startswith(f"{prefix}help"):
-        await message.reply(f"{iikata} - カウントされます\n{prefix}check - あなたのカウントを見れるらしいね\n{prefix}bl - チャンネルのカウントを停止するでー\n{prefix}help - こ　れ\n{prefix}ping - pingこまんどらしい\n(カウント回数はグローバルです。)\n作者はAIの使用についてこう公表しています。\n使用された箇所：\n・コードの監査や一部エラーの修正\n・replitの自動補完\n・githubへのcommitとpush←New！\n使用されていない箇所：\n・大半のコードの作成\n・botのアイコンや名前\n・サーバーのホスティング\n\nこのbotはオープンソースです。\n{repo}")
+        await message.reply(f"{iikata} - カウントされます\n{prefix}check - あなたのカウント履歴を見れます\n{prefix}bl - チャンネルのカウントを停止するでー\n{prefix}help - こ　れ\n{prefix}ping - pingこまんどらしい\n(カウント回数はグローバルです。)\nこのbotはオープンソースです。\n{repo}")
 
     if message.content.startswith(f"{prefix}bl"):
       try:
         id = message.channel.id
-      except:
+      except Exception as e:
+        print(e)
         return
       if bl(id,"plus") == True:
           await message.reply(f"チャンネルの{iikata}カウントを停止したよ！")
